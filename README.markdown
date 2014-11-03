@@ -1,3 +1,7 @@
+# tamagokun's fork
+
+* Added some 256 color changes
+
 # vim-colors-pencil
 
 > A light (and dark) color scheme for Vim inspired by iA Writer
