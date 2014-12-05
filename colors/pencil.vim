@@ -47,7 +47,7 @@ endif
 
 " not all terminals support italics properly.  If yours does, opt-in.
 if ! exists("g:pencil_terminal_italics")
-  let g:pencil_terminal_italics = 1
+  let g:pencil_terminal_italics = 0
 endif
 
 " Colors
