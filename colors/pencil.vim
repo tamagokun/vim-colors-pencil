@@ -47,22 +47,22 @@ endif
 
 " not all terminals support italics properly.  If yours does, opt-in.
 if ! exists("g:pencil_terminal_italics")
-  let g:pencil_terminal_italics = 0
+  let g:pencil_terminal_italics = 1
 endif
 
 " Colors
 let s:black           = { "gui": "#212121", "cterm": "235" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
-let s:white           = { "gui": "#F1F1F1", "cterm": "254" }
+let s:white           = { "gui": "#F1F1F1", "cterm": "255" }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
-let s:light_black     = { "gui": "#424242", "cterm": "59"  }
+let s:light_black     = { "gui": "#424242", "cterm": "238" }
 let s:lighter_black   = { "gui": "#545454", "cterm": "240" }
 
 if g:pencil_higher_contrast_ui == 0
   " darker shadow and whiter grays
   let s:subtle_black  = { "gui": "#262626", "cterm": "235" }
-  let s:light_gray    = { "gui": "#D9D9D9", "cterm": "253" }
-  let s:lighter_gray  = { "gui": "#E5E6E6", "cterm": "254" }
+  let s:light_gray    = { "gui": "#D9D9D9", "cterm": "249" }
+  let s:lighter_gray  = { "gui": "#E5E6E6", "cterm": "251" }
 else
   " lighter shadows and darker grays
   let s:subtle_black  = { "gui": "#303030", "cterm": "236" }
@@ -71,7 +71,7 @@ else
 endif
 
 let s:pink            = { "gui": "#fb007a", "cterm": "198" }
-let s:dark_red        = { "gui": "#C30771", "cterm": "161" }
+let s:dark_red        = { "gui": "#C30771", "cterm": "125" }
 let s:light_red       = { "gui": "#E32791", "cterm": "162" }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
 
@@ -82,14 +82,17 @@ let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
 let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "37"  }
 let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "74"  }
 
-let s:dark_green      = { "gui": "#10A778", "cterm": "36"  }
-let s:light_green     = { "gui": "#5FD7A7", "cterm": "79"  }
+let s:dark_green      = { "gui": "#10A778", "cterm": "22"  }
+let s:light_green     = { "gui": "#5FD7A7", "cterm": "35"  }
 
-let s:dark_purple     = { "gui": "#523C79", "cterm": "60"  }
+let s:dark_purple     = { "gui": "#523C79", "cterm": "55"  }
 let s:light_purple    = { "gui": "#6855DE", "cterm": "62" }
 
 let s:yellow          = { "gui": "#F3E430", "cterm": "221" }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "142" }
+
+let s:olive           = { "gui": "#67962e", "cterm": "64" }
+let s:brown           = { "gui": "#662f00", "cterm": "52" }
 
 if &background == "dark"
   let s:bg              = s:black
@@ -146,25 +149,26 @@ endfunction
 
 call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
 call s:h("Cursor",        {"bg": s:blue, "fg": s:norm })
-call s:h("Comment",       {"fg": s:medium_gray, "gui": "italic", "cterm": "italic"})
+call s:h("Comment",       {"fg": s:light_green, "gui": "italic", "cterm": "italic"})
 
-call s:h("Constant",      {"fg": s:cyan})
-hi! link String           Constant
-hi! link Character        Constant
+call s:h("Constant",      {"fg": s:brown})
 hi! link Number           Constant
-hi! link Boolean          Constant
 hi! link Float            Constant
+hi! link Boolean          Constant
 
-call s:h("Identifier",    {"fg": s:dark_blue})
-hi! link Function         Identifier
+call s:h("String",        {"fg": s:olive})
+hi! link Character        String
 
-call s:h("Statement",     {"fg": s:green})
+call s:h("Identifier",    {"fg": s:dark_red})
+
+call s:h("Statement",     {"fg": s:dark_blue})
 hi! link Conditonal       Statement
 hi! link Repeat           Statement
 hi! link Label            Statement
 hi! link Operator         Statement
-hi! link Keyword          Statement
 hi! link Exception        Statement
+hi! link Keyword          Statement
+hi! link Function         Statement
 
 call s:h("PreProc",       {"fg": s:red})
 hi! link Include          PreProc
@@ -243,7 +247,7 @@ call s:h("CursorLine",    {"bg": s:bg_very_subtle})
 call s:h("ColorColumn",   {"bg": s:bg_subtle})
 
 " remainder of syntax highlighting
-call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("MatchParen",    {"bg": s:yellow, "fg": s:black})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
 " hi helpHyperTextJump guifg=#5FAFD7 ctermfg=74
@@ -251,10 +255,10 @@ call s:h("qfLineNr",      {"fg": s:medium_gray})
 " HTML syntax
 hi! link htmlTag          Special
 hi! link htmlEndTag       htmlTag
-
-hi! link htmlTagName      KeyWord
+hi! link htmlTagName      htmlTag
 " html5 tags show up as htmlTagN
-hi! link htmlTagN         Keyword
+hi! link htmlTagN         htmlTag
+hi! link htmlArg          Statement
 
 " HTML content
 call s:h("htmlH1",        {"fg": s:head_a, "gui": "bold,italic", "cterm": "bold"     })
